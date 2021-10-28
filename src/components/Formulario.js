@@ -16,6 +16,11 @@ const Formulario = () => {
 
     setError(false);
     //construir el gasto
+    // const gasto = {
+    //   nombre,
+    //   cantidad,
+    //   id:
+    // }
     //pasar el gasto al componente principal
     // resetear el formulario
   };
