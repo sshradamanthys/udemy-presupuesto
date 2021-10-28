@@ -1,7 +1,8 @@
 import { useState } from "react";
+import shortid from "shortid";
 import Error from "./Error";
 
-const Formulario = () => {
+const Formulario = ({ agregarGasto }) => {
   const [nombre, setNombre] = useState("");
   const [cantidad, setCantidad] = useState(0);
   const [error, setError] = useState(false);
@@ -16,13 +17,17 @@ const Formulario = () => {
 
     setError(false);
     //construir el gasto
-    // const gasto = {
-    //   nombre,
-    //   cantidad,
-    //   id:
-    // }
-    //pasar el gasto al componente principal
-    // resetear el formulario
+    const gasto = {
+      nombre,
+      cantidad,
+      id: shortid.generate(),
+    };
+
+    agregarGasto(gasto);
+
+    // reset form
+    setNombre("");
+    setCantidad(0);
   };
   return (
     <form onSubmit={handleSubmit}>
