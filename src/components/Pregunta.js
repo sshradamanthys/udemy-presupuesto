@@ -24,8 +24,6 @@ const Pregunta = ({ setPresupuesto, setRestante, setMostrarPregunta }) => {
     setMostrarPregunta(false);
   };
 
-  console.log(error);
-
   return (
     <>
       <h2>Coloca tu presupuesto</h2>

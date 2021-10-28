@@ -10,12 +10,23 @@ function App() {
   const [mostrarPregunta, setMostrarPregunta] = useState(true);
   const [gastos, setGastos] = useState([]);
   const [gasto, setGasto] = useState({});
+  const [crearGasto, setCrearGasto] = useState(false);
 
   // UseEffect que actualiza el restante
   useEffect(() => {
-    setGastos([...gastos, gasto]);
-    console.log("ready or updated");
-  }, [gasto, gastos]);
+    if (crearGasto) {
+      setGastos([...gastos, gasto]);
+
+      // resta del presupuesto actual
+      const presupuestoRestante = restante - gasto.cantidad;
+
+      setRestante(presupuestoRestante);
+
+      setCrearGasto(false);
+    }
+  }, [crearGasto, gastos, gasto, restante]);
+
+  console.log("restante: ", restante);
 
   return (
     <div className="container">
@@ -31,7 +42,7 @@ function App() {
           ) : (
             <div className="row">
               <div className="one-half column">
-                <Formulario setGasto={setGasto} />
+                <Formulario setGasto={setGasto} setCrearGasto={setCrearGasto} />
               </div>
               <div className="one-half column">
                 <Listado gastos={gastos} />
