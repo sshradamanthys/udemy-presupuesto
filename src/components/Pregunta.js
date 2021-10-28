@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Error from "./Error";
 
 const Pregunta = () => {
   const [cantidad, setCantidad] = useState(0);
@@ -17,6 +18,7 @@ const Pregunta = () => {
       return;
     }
     //validado
+    setError(false);
   };
 
   console.log(error);
@@ -24,13 +26,13 @@ const Pregunta = () => {
   return (
     <>
       <h2>Coloca tu presupuesto</h2>
+      {error ? <Error msj="El Presupuesto es Incorrecto" /> : null}
       <form onSubmit={handleSubmit}>
         <input
           type="number"
           className="u-full-width"
           placeholder="Coloca tu presupuesto"
           onChange={handleChange}
-          value={cantidad}
         />
         <input
           type="submit"
